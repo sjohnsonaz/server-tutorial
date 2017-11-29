@@ -1,0 +1,22 @@
+{
+  "name": "server-tutorial",
+  "version": "0.0.0",
+  "description": "A Tutorial for setting up application hosting services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mkdocs": "mkdocs build",
+    "mkdocs-serve": "mkdocs serve",
+    "mkdocs-deploy": "mkdocs gh-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjohnsonaz/server-tutorial.git"
+  },
+  "author": "sjohnson@sjohnsonaz.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjohnsonaz/server-tutorial/issues"
+  },
+  "homepage": "https://sjohnsonaz.github.com/server-tutorial"
+}

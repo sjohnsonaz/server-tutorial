@@ -1,0 +1,10 @@
+site_name: Server Tutorial
+site_url: https://sjohnsonaz.github.io/server-tutorial
+repo_url: https://github.com/sjohnsonaz/server-tutorial
+copyright: Copyright &copy; 2017 Sean Johnson
+pages:
+    - Home: index.md
+    - Overview:
+        - Getting Started: 0-Overview/0.0-Getting-Started.md
+        - Server Creation: 0-Overview/0.1-Server-Creation.md
+theme: readthedocs
