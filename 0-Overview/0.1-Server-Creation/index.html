@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Server Creation - Server Tutorial</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Server Creation";
+    var mkdocs_page_input_path = "0-Overview\\0.1-Server-Creation.md";
+    var mkdocs_page_url = "/0-Overview/0.1-Server-Creation/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Server Tutorial</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Overview</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../0.0-Getting-Started/">Getting Started</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Server Creation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#create-server">Create Server</a></li>
+    
+
+    <li class="toctree-l3"><a href="#install-server-software">Install Server Software</a></li>
+    
+
+    <li class="toctree-l3"><a href="#configure-server-software">Configure Server Software</a></li>
+    
+
+    <li class="toctree-l3"><a href="#prepare-for-deployment">Prepare for Deployment</a></li>
+    
+
+    <li class="toctree-l3"><a href="#set-up-deployment">Set Up Deployment</a></li>
+    
+
+    <li class="toctree-l3"><a href="#create-gitlab-deployment">Create GitLab Deployment</a></li>
+    
+
+    <li class="toctree-l3"><a href="#start-node-server">Start Node Server</a></li>
+    
+
+    <li class="toctree-l3"><a href="#create-ssl-certificate">Create SSL Certificate</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Server Tutorial</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Overview &raquo;</li>
+        
+      
+    
+    <li>Server Creation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/sjohnsonaz/server-tutorial/edit/master/docs/0-Overview\0.1-Server-Creation.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>This tutorial has been specifically written for <strong>Ubuntu 16.4</strong>, although it may apply to other versions as well.  For all commands and code examples, replace <code>{{text}}</code> with values specific to your project.</p>
+<h2 id="create-server">Create Server</h2>
+<p>If you haven't already, in your hosting company's control panel, create a new Server.</p>
+<blockquote>
+<p><strong>Note: Make sure to open Ports 80 and 443 on the Server Firewall.</strong></p>
+</blockquote>
+<h2 id="install-server-software">Install Server Software</h2>
+<p>Become an administrator</p>
+<pre><code>sudo su
+</code></pre>
+<p>Prepare for installation</p>
+<pre><code>apt-get update
+apt-get upgrade
+apt-get autoremove
+</code></pre>
+<p>Install Node</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+apt-get install -y nodejs
+cd /etc
+mkdir node
+</code></pre>
+<p>Install Nginx</p>
+<pre><code>apt-get install nginx
+</code></pre>
+<h2 id="configure-server-software">Configure Server Software</h2>
+<p>Configure Nginx</p>
+<pre><code>cd /etc/nginx/sites-available/
+touch {{site name}}
+vim {{site name}}
+</code></pre>
+<p>Paste this into the file.  Save by pressing ESC, and entering <code>:wq</code>.</p>
+<pre><code>server {
+    listen 80;
+
+    server_name {{site url}};
+
+    location / {
+        root /etc/node/{{site root}}/{{public folder}};
+        try_files $uri $uri/ @dynamic;
+        expires max;
+        access_log off;
+    }
+
+    location @dynamic {
+        proxy_pass http://localhost:{{site port}};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+</code></pre>
+
+<p>Update Enabled Sites</p>
+<pre><code>ln -s /etc/nginx/sites-available/{{site name}} /etc/nginx/sites-enabled/{{site name}}
+nginx -t
+nginx -s reload
+</code></pre>
+<h2 id="prepare-for-deployment">Prepare for Deployment</h2>
+<p>Create Deployment User</p>
+<pre><code>adduser deployment
+usermod -aG sudo deployment
+chown -R deployment /etc/node/
+chgrp -R deployment /etc/node/
+su deployment
+</code></pre>
+<p>Create project folder</p>
+<pre><code>mkdir -p /etc/node/{{site root}}
+</code></pre>
+<p>Create SSH Keys</p>
+<pre><code>cd /home/deployment
+ssh-keygen -t rsa -C "{{deployment email address}}" -b 4096
+</code></pre>
+<p>Store the output of these two commands for use</p>
+<pre><code>cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa
+</code></pre>
+<p>Install SSH Keys</p>
+<pre><code>ssh-copy-id {{destination server}}
+</code></pre>
+<p>Exit back to admin user</p>
+<pre><code>exit
+</code></pre>
+<h2 id="set-up-deployment">Set Up Deployment</h2>
+<p>Create a GitLab account and Log In.</p>
+<p>In GitLab, go to <code>Profile -&gt; Settings -&gt; SSH Keys</code>.  Enter the value of <code>~/.ssh/id_rsa.pub</code> into <code>Key</code>.  <code>Title</code> should populate automatically.  Click <code>Add key</code>.</p>
+<p>Create a Project.  In your project, go to <code>Settings -&gt; CI / CD</code>.  Expand <code>Secret variables</code>.  Enter <code>STAGING_PRIVATE_KEY</code> into <code>Key</code>.  Enter the value of <code>~/.ssh/id_rsa</code> into <code>Value</code>.  Click <code>Add new variable</code>.</p>
+<h2 id="create-gitlab-deployment">Create GitLab Deployment</h2>
+<p>In your project, create the file <code>.gitlab-ci.yml</code>.  Paste into that file:</p>
+<pre><code>image: node:latest
+
+services:
+
+cache:
+  paths:
+  - node_modules/
+
+test_async:
+  script:
+   - npm install
+   - npm test
+
+before_script:
+  - 'which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y )'
+  - mkdir -p ~/.ssh
+  - echo &quot;$STAGING_PRIVATE_KEY&quot; | tr -d '\r' &gt; ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - eval &quot;$(ssh-agent -s)&quot;
+  - ssh-add ~/.ssh/id_rsa
+  - '[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *\n\tStrictHostKeyChecking no\n\n&quot; &gt; ~/.ssh/config'
+
+staging:
+  type: deploy
+  script:
+    - npm install
+    - npm run dev
+    - tar -zcf ../build.tar.gz ./ --exclude='.git/' --exclude='build.tar.gz'
+    - ssh deployment@{{destination server}} &quot;
+        cd /etc/node &amp;&amp;
+        rm -rf _tmp &amp;&amp;
+        mkdir -p _tmp/{{site root}}_new&quot;
+    - scp ../build.tar.gz deployment@{{destination server}}:/etc/node/_tmp
+    - ssh deployment@{{destination server}} &quot;
+        cd /etc/node/_tmp &amp;&amp;
+        tar -xzf build.tar.gz -C {{site root}}_new &amp;&amp;
+        rm build.tar.gz &amp;&amp;
+        mv /etc/node/{{site root}} {{site root}}_old &amp;&amp;
+        mv {{site root}}_new /etc/node/{{site root}} &amp;&amp;
+        cd ../ &amp;&amp;
+        rm -rf _tmp&quot;
+  only:
+  - master
+</code></pre>
+
+<p>Commit the file, and allow GitLab to deploy it.</p>
+<h2 id="start-node-server">Start Node Server</h2>
+<p>Install Node Site Runner</p>
+<pre><code>npm install -g pm2
+su deployment
+touch process.yml
+vim process.yml
+</code></pre>
+<p>Paste this into the file.  Save by pressing ESC, and entering <code>:wq</code>.</p>
+<pre><code>apps:
+  - script: {{site root}}/{{main js file}}
+    instances: 4
+    exec_mode: cluster
+    watch: true
+    env:
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
+</code></pre>
+
+<p>Exit back to admin</p>
+<pre><code>exit
+</code></pre>
+<h2 id="create-ssl-certificate">Create SSL Certificate</h2>
+<p>Create Certificate</p>
+<pre><code>apt-get install software-properties-common
+add-apt-repository ppa:certbot/certbot
+apt-get update
+apt-get install python-certbot-nginx
+certbot certonly --webroot -w /etc/node/{{site root}}/{{public folder]/ -d {{site url}}
+certbot --nginx
+</code></pre>
+<p>Renew Certificate</p>
+<pre><code>certbot renew
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../0.0-Getting-Started/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2017 Sean Johnson</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/sjohnsonaz/server-tutorial" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../0.0-Getting-Started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>

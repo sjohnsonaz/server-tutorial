@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/</loc>
+     <lastmod>2017-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/0-Overview/0.0-Getting-Started/</loc>
+     <lastmod>2017-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/0-Overview/0.1-Server-Creation/</loc>
+     <lastmod>2017-11-29</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>
