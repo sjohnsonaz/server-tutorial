@@ -205,14 +205,14 @@ su deployment
 </code></pre>
 <p>Create SSH Keys</p>
 <pre><code>cd /home/deployment
-ssh-keygen -t rsa -C "{{deployment email address}}" -b 4096
+ssh-keygen -t rsa -C "deployment@{{site url}}" -b 4096
 </code></pre>
 <p>Store the output of these two commands for use</p>
 <pre><code>cat ~/.ssh/id_rsa.pub
 cat ~/.ssh/id_rsa
 </code></pre>
 <p>Install SSH Keys</p>
-<pre><code>ssh-copy-id {{destination server}}
+<pre><code>ssh-copy-id {{site url}}
 </code></pre>
 <p>Exit back to admin user</p>
 <pre><code>exit
@@ -251,12 +251,12 @@ staging:
     - npm install
     - npm run dev
     - tar -zcf ../build.tar.gz ./ --exclude='.git/' --exclude='build.tar.gz'
-    - ssh deployment@{{destination server}} &quot;
+    - ssh deployment@{{site url}} &quot;
         cd /etc/node &amp;&amp;
         rm -rf _tmp &amp;&amp;
         mkdir -p _tmp/{{site root}}_new&quot;
-    - scp ../build.tar.gz deployment@{{destination server}}:/etc/node/_tmp
-    - ssh deployment@{{destination server}} &quot;
+    - scp ../build.tar.gz deployment@{{site url}}:/etc/node/_tmp
+    - ssh deployment@{{site url}} &quot;
         cd /etc/node/_tmp &amp;&amp;
         tar -xzf build.tar.gz -C {{site root}}_new &amp;&amp;
         rm build.tar.gz &amp;&amp;
@@ -297,7 +297,7 @@ vim process.yml
 add-apt-repository ppa:certbot/certbot
 apt-get update
 apt-get install python-certbot-nginx
-certbot certonly --webroot -w /etc/node/{{site root}}/{{public folder]/ -d {{site url}}
+certbot certonly --webroot -w /etc/node/{{site root}}/{{public folder}}/ -d {{site url}}
 certbot --nginx
 </code></pre>
 <p>Renew Certificate</p>
