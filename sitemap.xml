@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://sjohnsonaz.github.io/server-tutorial/</loc>
-     <lastmod>2017-11-30</lastmod>
+     <lastmod>2018-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,14 +12,34 @@
     
         
     <url>
-     <loc>https://sjohnsonaz.github.io/server-tutorial/0-Overview/0.0-Getting-Started/</loc>
-     <lastmod>2017-11-30</lastmod>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/0-Overview/0.0-Concepts/</loc>
+     <lastmod>2018-01-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/1-Web-Server/1.0-Getting-Started/</loc>
+     <lastmod>2018-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>https://sjohnsonaz.github.io/server-tutorial/0-Overview/0.1-Server-Creation/</loc>
-     <lastmod>2017-11-30</lastmod>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/1-Web-Server/1.1-Server-Creation/</loc>
+     <lastmod>2018-01-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://sjohnsonaz.github.io/server-tutorial/2-Web-Application/2.0-Node.js/</loc>
+     <lastmod>2018-01-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
